@@ -1,0 +1,36 @@
+
+.navbar{
+  border: var(--border);
+  margin-bottom: 2rem;
+}
+.open-modal{
+  padding: 1rem;
+}
+.fondo{
+  background-color: var(--fondo);
+  padding-bottom: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.inputs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.campo{
+  margin: 0.5rem 1rem;
+  
+}
+.boton{
+  margin: 1rem;
+}
+/*Tarjetas*/
+.tarjeta{
+  background-color: var(--fondo-content);
+}
+.contratar{
+  border: var(--border);
+  background-color: var(--boton);
+}

@@ -1,0 +1,94 @@
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+    <div class="fondo">
+      <img class="body-image" src="https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/sites/354/2016/11/Booking-Fee-1.png" alt="imagen de header">
+      <div class="navbar">
+        <ion-list>
+          <ion-item>
+            <div class="inputs">
+              <ion-input class="campo" type="number" fill="outline" label="Capacidad de pasajeros" labelPlacement="floating" 
+              [clearInput]="true" placeholder="Capacidad de pasajeros" [(ngModel)]="capacidad"></ion-input>
+              
+              <ion-input class="campo" type="number" fill="outline" label="Precio minimo" labelPlacement="floating" 
+              [clearInput]="true" placeholder="Ingrese un precio" [(ngModel)]="minPrecio"></ion-input>
+
+              <ion-input class="campo" type="number" fill="outline" label="Precio maximo" labelPlacement="floating" 
+              [clearInput]="true" placeholder="Ingrese un precio" [(ngModel)]="maxPrecio"></ion-input>
+            </div>
+            <ion-buttons slot="end">
+              <ion-button (click)="filtrarVehiculos()">Buscar</ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+      </div>
+      <h2>Resultado de la busqueda</h2>
+      <div class="resultados">
+        <div *ngIf="vehiculosFiltrados.length > 0">
+          <div *ngFor="let item of vehiculosFiltrados">
+            <div *ngFor="let user of user">
+              <div *ngIf="user.nombre == item.detalle">
+                <div class="homeTransportes">
+                  <mat-card class="tarjeta" appearance="outlined">
+                    <ng-container>
+                      <div>
+                        <mat-card-header class="tarjeta-titulo">
+                          <span>Trasporte</span>
+                        </mat-card-header>
+                        <div class="card-image">
+                          <img mat-card-image src="{{ item.imagen }}" alt="imagen de transporte">
+                        </div>
+                        <mat-card-content class="card-content">
+                          <span>Conductor: {{ user.nombre }}</span><br>
+                          <span>Tipo de Vehículo: {{ item.nombre }}</span><br>
+                          <span>Capacidad: {{ item.categoria }} pasajeros</span><br>
+                          <span>Destino: {{ user.imagen }}</span><br>
+                          <div><span class="precio">Precio: ${{ item.precio }}</span></div>
+                        </mat-card-content>        
+                        <mat-card-actions>
+                          <button mat-button class="contratar" (click)="mostrarModal(item, user)">Contratar</button>
+                        </mat-card-actions>
+                      </div>
+                    </ng-container>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="vehiculosFiltrados.length == 0">
+          <h1>No hay Vehiculos...</h1>
+        </div>
+      </div>
+    </div>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="setOpen(false)">Cancelar</ion-button>
+            </ion-buttons>
+            <ion-title>Pagar</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="addToCart()" [strong]="true">Pagar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <div class="fondo">
+            <h2>subTotal: ${{ selectedItem?.precio }}</h2>
+            <h1>Total: ${{ selectedItem?.precio }}</h1>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+</div>

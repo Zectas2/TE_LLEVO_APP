@@ -1,0 +1,49 @@
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding"> 
+    <div class="fondo">
+      <img class="body-image" src="https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/sites/354/2016/11/Booking-Fee-1.png" alt="imagen de header">
+        <h2>Registro de usuarios</h2>
+      <div class="contenedor">
+        <!--Formulario Registro de Vehiculos-->
+        <div class="inputs">
+          <h2>Usuario</h2>
+            <ion-input class="campo" type="text" fill="outline" label="Nombre" labelPlacement="floating" [clearInput]="true"
+              placeholder="Ingrese su nombre y apellido paterno" [(ngModel)]="nombre"></ion-input>
+            
+            <ion-input class="campo" id="email" fill="outline" label="Email" labelPlacement="floating" [clearInput]="true"
+              placeholder="Ingrese su email" [(ngModel)]="email"></ion-input>
+            
+            <ion-input class="campo" id="Contraseña" fill="outline" label="Contraseña" labelPlacement="floating" [clearInput]="true"
+              placeholder="Ingrese su clave" type="{{sw?'text':'password'}}" [(ngModel)]="clave">
+            <ion-button color="light-grey" slot="end" (click)="sw=!sw">  <ion-icon style="box-shadow: transparent;" style="bottom: auto;" style="color: rgb(0, 0, 0);" name = "{{sw?'eye':'eye-off'}}" > </ion-icon>  </ion-button>
+            </ion-input>
+            <ion-item class="select">
+              <ion-label>Seleccione una zona</ion-label>
+              <ion-select placeholder="Seleccione una zona" [(ngModel)]="comuna">
+                <ion-select-option value="melipilla">Melipilla</ion-select-option>
+                <ion-select-option value="batuco">Batuco</ion-select-option>
+                <ion-select-option value="el-monte">El Monte</ion-select-option>
+                <ion-select-option value="curacavi">Curacaví</ion-select-option>
+                <ion-select-option value="san-pedro">San Pedro</ion-select-option>
+                <ion-select-option value="maipu">Maipú</ion-select-option>
+                <ion-select-option value="otro">Otro</ion-select-option>
+              </ion-select>
+            </ion-item>
+        </div>
+        <div class="boton">
+          <ion-button color="danger" (click)="registrarConductor()">Registrar Datos</ion-button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</div>
+

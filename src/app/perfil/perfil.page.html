@@ -1,0 +1,137 @@
+<div class="ion-page padding" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="fondo">
+      <!-- Imagen de cabecera -->
+      <img class="body-image" src="https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/sites/354/2016/11/Booking-Fee-1.png" alt="imagen de header">
+      
+      <!-- Verifica si el usuario está autenticado -->
+      <div *ngIf="authService.isAuthenticated(); else notLoggedIn">
+        <div id="caja">
+          <!-- Bienvenida -->
+          <div class="titulo">
+            <h2>Bienvenido <br>{{ authService.getCurrentUser()?.nombre }}</h2>
+          </div>
+          <div class="email">
+            <span>Email: {{ authService.getCurrentUser()?.detalle }}</span>
+          </div>
+          <div>
+            <a routerLink="/mis-vehiculos">Mis Vehículos</a>
+          </div>
+
+          <!-- Historial como Pasajero -->
+          <div class="historialPasajero">
+            <div class="table-container">
+              <table *ngIf="viaje && viaje.length > 0; else noRegistrosP">
+                <caption>Historial como Pasajero</caption>
+                <tr>
+                  <th>Destino</th>
+                  <th>Precio</th>
+                  <th>Fecha</th>
+                  <th>Nombre Conductor</th>
+                </tr>
+                <tr *ngFor="let item of viaje; index as indice">
+                  <ng-container *ngIf="item.nombreCliente == authService.getCurrentUser()?.nombre && item.nombreConductor != item.nombreCliente">
+                    <td>{{item.destino}}</td>
+                    <td>${{item.precio}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.nombreConductor}}</td>
+                    <td>
+                      <ion-icon name="trash" (click)="delToViaje(indice)"></ion-icon>
+                    </td>
+                  </ng-container>
+                </tr>
+              </table>
+            </div>
+            <!-- Si no hay viajes registrados como pasajero -->
+            <ng-template #noRegistrosP>
+              <div class="table-container">
+                <table>
+                  <caption>Historial como Pasajero</caption>
+                  <tr>
+                    <th>Destino</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                    <th>Nombre Conductor</th>
+                  </tr>
+                  <tr>
+                    <td colspan="4">
+                      <h2>No hay viajes registrados...</h2>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </div>
+
+          <!-- Historial como Conductor -->
+          <div class="historialConductor">
+            <div class="table-container">
+              <table *ngIf="carrito && carrito.length > 0; else noRegistros">
+                <caption>Historial como Conductor</caption>
+                <tr>
+                  <th>Imagen</th>
+                  <th>Nombre Vehículo</th>
+                  <th>Precio</th>
+                  <th>Fecha</th>
+                  <th>Destino</th>
+                  <th>Nombre Cliente</th>
+                </tr>
+                <tr *ngFor="let item of carrito; index as indice">
+                  <ng-container *ngFor="let itemV of viaje">
+                    <ng-container *ngIf="item.detalle == authService.getCurrentUser()?.nombre && itemV.nombreConductor == authService.getCurrentUser()?.nombre">
+                      <td>
+                        <img src="{{item.imagen}}" alt="Imagen del vehículo" width="100px" height="80px">
+                      </td>
+                      <td>{{item.nombre}}</td>
+                      <td>${{item.precio}}</td>
+                      <td>{{item.fecha}}</td>
+                      <td>{{item.destinoUsuario}}</td>
+                      <td>{{itemV.nombreCliente}}</td>
+                      <td>
+                        <ion-icon name="trash" (click)="delToCart(indice)"></ion-icon>
+                      </td>
+                    </ng-container>
+                  </ng-container>
+                </tr>
+              </table>
+            </div>
+            <!-- Si no hay viajes registrados como conductor -->
+            <ng-template #noRegistros>
+              <div class="table-container">
+                <table>
+                  <caption>Historial como Conductor</caption>
+                  <tr>
+                    <th>Imagen</th>
+                    <th>Nombre Vehículo</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                    <th>Destino</th>
+                    <th>Nombre Cliente</th>
+                  </tr>
+                  <tr>
+                    <td colspan="6">
+                      <h2>No hay viajes registrados...</h2>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensaje si no ha iniciado sesión -->
+      <ng-template #notLoggedIn>
+        <h2>No has iniciado sesión.</h2>
+      </ng-template>
+    </div>
+  </ion-content>
+</div>

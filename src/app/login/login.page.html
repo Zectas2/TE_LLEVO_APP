@@ -1,0 +1,59 @@
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true">
+    <form  #loginForm="ngForm">  
+      <div id="contenedor">
+        <img class="body-image" src="https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/sites/354/2016/11/Booking-Fee-1.png" alt="imagen de header">
+        <div id="caja">
+          <div class="titulo">
+            <h2>Iniciar sesión</h2>
+          </div>
+          <ion-input  id="email" fill="outline" label="Email" labelPlacement="floating" [clearInput]="true"
+            placeholder="Ingrese su usuario" required (blur)="animarError(0)" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"></ion-input>
+
+          <ion-input type="number" id="Contraseña" fill="outline" label="Contraseña" labelPlacement="floating" [clearInput]="true"
+            placeholder="Ingrese su clave" type="{{sw?'text':'password'}}" required (blur)="animarError(1)" [(ngModel)]="clave" [ngModelOptions]="{standalone: true}">
+            <ion-button color="light-grey" slot="end" (click)="sw=!sw">  <ion-icon style="box-shadow: transparent;" style="bottom: auto;" style="color: rgb(0, 0, 0);" name = "{{sw?'eye':'eye-off'}}" > </ion-icon>  </ion-button>
+            </ion-input>
+            <ion-button color="danger" type="submit" (click)="login()">Ingresar</ion-button>
+            <a (click)="setOpen(true)">Olvide mi contraseña</a>
+            <a routerLink="/registro">Registrarse</a>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</div>
+
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="danger" type="submit" (click)="setOpen(false)">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title>Recuperar clave</ion-title>
+        <ion-buttons slot="end">
+          <ion-button color="danger" type="submit" (click)="resetPass()">Recuperar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div class="fondo">
+          <ion-input type="email" id="email" fill="outline" label="email" labelPlacement="floating" [clearInput]="true"
+            placeholder="usuario@gmail.com" required (blur)="animarError(0)" [(ngModel)]="email"></ion-input>
+          
+          <ion-input type="number" id="NuevaClave" fill="outline" label="NuevaClave" labelPlacement="floating" [clearInput]="true"
+            placeholder="Nueva Clave" required (blur)="animarError(0)" [(ngModel)]="NuevaClave">
+          </ion-input>
+          <label for="NuevaClave" class="label">La nueva clave debe ser numerica y de 4 digitos...</label>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

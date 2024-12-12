@@ -1,0 +1,36 @@
+h2{
+  font-size: 2rem;
+}
+
+.fondo{
+background-color: var(--fondo);
+padding-bottom: 100%;
+}
+.contenedor{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+}
+.inputs{
+margin: 2rem;
+padding: 10%;
+}
+.campo{
+border-radius: 5px; 
+margin: 0.5rem;
+padding: 1rem;
+background-color: var(--fondo-input);
+text-decoration: var(--texto-input) ;
+}
+.boton{
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 4rem;
+margin-bottom: 5rem;
+}
+.select{
+  color: blue($color: #000000);
+}

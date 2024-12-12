@@ -1,0 +1,24 @@
+
+h2{
+  font-size: 2rem;
+  color: var(--texto-input);
+}
+h1{
+  color: var(--texto-input);
+}
+/*Body*/
+.fondo{
+  background-color: var(--fondo);
+  padding-bottom: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.tarjeta{
+  background-color: var(--fondo-content);
+}
+
+.contratar{
+  border: var(--border);
+  background-color: var(--boton);
+}

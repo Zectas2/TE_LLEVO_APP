@@ -1,0 +1,172 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/*Cambios generales*/
+.hidden{
+  display: none;
+}
+
+*{
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h1, p, caption, th{
+  color: var(--texto-input);
+}
+
+a{
+  color: var(--link);
+}
+
+h2{
+    margin: 0.5rem;
+    display: flex;
+    font-size: large;
+    justify-content: center;
+    align-items: center;
+    text-wrap: wrap;
+    color: var(--texto-input);
+  }
+  /*Navbar*/
+  .menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .menu a{
+    text-align: center;
+    text-decoration: none;
+    padding:  15px 100%;
+    background-color: var(--fondo);
+    border-radius: 5px;
+  }
+  .link{
+    text-align: center;
+    text-decoration: none;
+    padding:  15px 100%;
+    background-color: rgba(0, 40, 172, 0.973);
+    border-radius: 5px;
+  }
+.body-image {
+    width: -webkit-fill-available;
+}
+.icono{
+  width: 2rem;
+  height: 2rem;
+}
+td{
+  color: var(--texto-input);
+}
+
+
+/*Tarjetas*/
+.homeTransportes{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  
+}
+.tarjeta{
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  max-width: 20rem;
+  height: fit-content;
+  background-color: var(--fondo-content);
+  font-size: 1.5rem;
+  margin: 0.5rem;
+}
+.contratar{
+  font-size: larger;
+  width: 100vw;
+  height: 10vh;
+  border: var(--border);
+  background-color: var(--fondo);
+  color: var(--texto-input);
+}
+.tarjeta span {
+  font-size: 1.1rem;
+  margin: 15px 5px;
+  line-height: 2.2rem;
+  color: var(--texto-input);
+}
+.card-image{
+  height: 165px;
+  margin: 5px;
+}
+.card-image img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 165px;
+  margin: 0 auto;
+  mix-blend-mode: var(--fondo-imagen) ;
+}
+
+.variable{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.padding{
+  padding: 0;
+}
+*{
+  font-size: 1.1rem;
+}
+.tarjeta-titulo{
+  justify-content: center;
+  align-items: center;
+  color: var(--texto-input);
+}
+.tarjeta-titulo span{
+  font-size: 2rem;
+  color: var(--texto-input);
+}
+.precio{
+  font-weight: 700;
+}
+
+mat-mdc-card-actions {
+  padding: 0 !important;
+}

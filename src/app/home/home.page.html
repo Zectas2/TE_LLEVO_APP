@@ -1,0 +1,78 @@
+
+<div class="ion-page padding" id="main-content" >
+  
+    
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="padding"> 
+        <div class="fondo" *ngIf="authService.isAuthenticated(); else notLoggedIn">
+          <img class="body-image" src="https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/sites/354/2016/11/Booking-Fee-1.png" alt="imagen de header">
+                <div class="homeTransportes">
+                  <ng-container *ngFor="let item of vehiculos">
+                    <ng-container *ngFor="let user of user">
+                      <ng-container *ngIf="item.detalle === user.nombre">
+                        <mat-card class="tarjeta" appearance="outlined">
+                            <div>
+                              <ng-container>
+                                <mat-card-header class="tarjeta-titulo">
+                                  <span>Trasporte</span>
+                                </mat-card-header>
+                                <div class="card-image">
+                                  <img mat-card-image src="{{ item.imagen }}" alt="imagen de transporte">
+                                </div>
+                                <mat-card-content class="card-content">
+                                  <span>Conductor: {{ item.detalle }}</span><br>
+                                  <span>Tipo de Vehículo: {{ item.nombre }}</span><br>
+                                  <span>Capacidad: {{ item.categoria }} pasajeros</span><br>
+                                  <span>Destino: {{ user.imagen }}</span><br>
+                                  <div><span class="precio">Precio: ${{ item.precio }}</span></div>
+                                </mat-card-content>        
+                                <mat-card-actions>
+                                  <button mat-button class="contratar" (click)="mostrarModal(item, user)">Contratar</button>
+                                </mat-card-actions>
+                              </ng-container>
+                            </div>
+                        </mat-card>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </div>
+      
+          <!-- Mover el modal fuera del bucle -->
+          <ion-modal [isOpen]="isModalOpen">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="setOpen(false)">Cancelar</ion-button>
+                  </ion-buttons>
+                  <ion-title>Pagar</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="addToCart()" [strong]="true">Pagar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content>
+                <div class="fondo">
+                  <h2>subTotal: ${{ selectedItem?.precio }}</h2>
+                  <h1>Total: ${{ selectedItem?.precio }}</h1>
+                </div>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+        </div>
+        <ng-template #notLoggedIn>
+          <h2>No has iniciado sesión.</h2>
+        </ng-template>
+      </ion-content>
+      
+
+
+      
+</div>

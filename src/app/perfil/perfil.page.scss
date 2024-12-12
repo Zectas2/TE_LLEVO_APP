@@ -1,0 +1,132 @@
+/* General */
+.fondo {
+    background-color: var(--fondo, #7fff94dc);
+    padding: 15px;
+    color: var(--texto-input, #000);
+    border-radius: 10px;
+  }
+  
+  /* Imagen de cabecera */
+  .body-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    padding: 0; /* Removido padding adicional */
+    border-radius: 10px;
+    filter: var(--fondo-imagen, none); /* Cambia según el tema */
+  }
+  
+  /* Bienvenida y detalles */
+  .titulo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .email {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  a {
+    color: #0000ee;
+    text-decoration: underline;
+  }
+  
+  /* Contenedor para scroll horizontal */
+  .table-container {
+    overflow-x: auto; /* Scroll horizontal */
+    margin: 20px 0;
+    white-space: nowrap;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tablas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    background-color: var(--fondo-input, #ffffff);
+    border: var(--border, 1px solid #dddddd);
+  }
+  
+  table th,
+  table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #dddddd;
+  }
+  
+  caption {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--texto-input);
+  }
+  
+  /* Columnas principales visibles */
+  table th:nth-child(-n+3),
+  table td:nth-child(-n+3) {
+    position: sticky; /* Fija las columnas al desplazar */
+    left: 0;
+    background-color: var(--fondo-content, #ffffff);
+    z-index: 1;
+    border-right: 2px solid #ddd;
+  }
+  
+  /* Columnas desplazables */
+  table th,
+  table td {
+    min-width: 100px; /* Espacio mínimo para las celdas */
+    color: var(--texto-inputT);
+  }
+  
+  /* Imágenes */
+  table td img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    table th,
+    table td {
+      padding: 8px;
+      color: var(--texto-inputT);
+    }
+  
+    table td img {
+      max-width: 60px;
+    }
+  
+    table {
+      font-size: 0.8rem;
+    }
+  
+    .titulo h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    table th,
+    table td {
+      padding: 5px;
+      color: var(--texto-inputT);
+    }
+  
+    table td img {
+      max-width: 50px;
+    }
+  
+    table {
+      font-size: 0.7rem;
+    }
+  
+    .titulo h2 {
+      font-size: 1.2rem;
+    }
+  }
+  

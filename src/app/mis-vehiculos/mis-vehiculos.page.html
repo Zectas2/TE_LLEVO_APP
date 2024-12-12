@@ -1,0 +1,157 @@
+
+<div class="ion-page padding" id="main-content" >
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content> 
+    <div class="fondo">
+      <img class="body-image" src="https://blog.uber-cdn.com/cdn-cgi/image/width=2160,quality=80,onerror=redirect,format=auto/wp-content/uploads/sites/354/2016/11/Booking-Fee-1.png" alt="imagen de header">
+      <div *ngIf="authService.isAuthenticated(); else notLoggedIn">
+        <ion-button (click)="setOpen(true)">Añadir Vehiculo</ion-button>
+        <div id="caja">
+          <div class="titulo">
+            <h2>Mis Vehiculos</h2>
+          </div>
+          <div class="historialConductor">
+            <table *ngIf="vehiculos && vehiculos.length > 0; else noRegistros">
+              <caption>Lista de mis vehiculos</caption>
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre Vehiculo</th>
+                <th>Precio</th>
+                <th>Cap</th>
+              </tr>
+              <tr *ngFor="let item of vehiculos">
+                  <ng-container *ngIf="item.detalle == authService.getCurrentUser()?.nombre">
+                    <td><img src="{{item.imagen}}" alt=""></td>
+                    <td>{{item.nombre}}</td>
+                    <td>${{item.precio}}</td>
+                    <td>{{ item.categoria}}</td>
+                    <td><ion-icon name="build-outline" (click)="captureId(item.id,item.nombre,item.precio,item.categoria,item.imagen)"></ion-icon></td>
+                    <td><ion-icon name="trash" (click)="DelVehiculo(item.id)"></ion-icon></td>
+                  </ng-container>
+              </tr>
+            </table>
+            <!--SI NO HAY VEHICULOS AL NOMBRE DEL USUARIO-->
+            <ng-template #noRegistros>
+              <table>
+                <caption>Lista de mis vehiculos</caption>
+                <tr>
+                  <th>Id</th>
+                  <th>Imagen</th>
+                  <th>Nombre Vehiculo</th>
+                  <th>Precio</th>
+                  <th>Cap</th>
+                </tr>
+                <tr >
+                  <h2>No hay vehiculos registrados...</h2>
+                </tr>
+              </table>
+            </ng-template>
+          </div>
+          
+        </div>
+      </div>
+      <ng-template #notLoggedIn>
+        <h2>No has iniciado sesión.</h2>
+      </ng-template>
+    </div>
+  </ion-content>
+</div>
+<!--MODAL PARA REGISTRAR VEHICULOS-->
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="danger" type="submit" (click)="setOpen(false)">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title>Registrar Vehiculo</ion-title>
+        <ion-buttons slot="end">
+          <ion-button color="danger" type="submit" (click)="registrarVehiculo()">Registrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div class="fondo">
+        <ion-item>
+          <div class="inputs">
+            <h2>Vehiculo</h2>
+
+            <ion-input class="campo" type="text" fill="outline" label="Nombre Vehiculo" labelPlacement="floating" [clearInput]="true"
+                placeholder="Ingrese nombre del vehiculo" [(ngModel)]="nombreVehiculo">
+            </ion-input>
+            <ion-input class="campo" type="number" fill="outline" label="Tarifa" labelPlacement="floating" [clearInput]="true"
+                placeholder="Ingrese su precio por viaje" [(ngModel)]="precioVehiculo">
+            </ion-input>
+              <ion-item>
+                <ion-label>Capacidad</ion-label>
+                <ion-select placeholder="Seleccione: " [(ngModel)]="capacidadVehiculo">
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                  <ion-select-option value="3">3</ion-select-option>
+                </ion-select>
+              </ion-item>
+            <ion-input class="campo" type="text" fill="outline" label="Imagen" labelPlacement="floating" [clearInput]="true"
+              placeholder="Link de Imagen" [(ngModel)]="imagenVehiculo">
+            </ion-input>
+
+          </div>
+        </ion-item>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+<!--MODAL PARA EDITAR VEHICULOS-->
+<ion-modal [isOpen]="isModalOpenDel">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="danger" type="submit" (click)="setOpenDel(false)">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title>Editar Vehiculo</ion-title>
+        <ion-buttons slot="end">
+          <ion-button color="danger" type="submit" (click)="editarVehiculo()">Guardar Cambios</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div class="fondo">
+        <ion-item>
+          <div class="inputs">
+            <h2>Vehiculo</h2>
+
+            <ion-input class="campo" type="number" fill="outline" label="Id Vehiculo" labelPlacement="floating" [clearInput]="true"
+                placeholder="Ingrese Id del vehiculo" [(ngModel)]="idVehiculo">
+            </ion-input>
+
+            <ion-input class="campo" type="text" fill="outline" label="Nombre Vehiculo" labelPlacement="floating" [clearInput]="true"
+                placeholder="Ingrese nombre del vehiculo" [(ngModel)]="nombreVehiculo">
+            </ion-input>
+            <ion-input class="campo" type="number" fill="outline" label="Tarifa" labelPlacement="floating" [clearInput]="true"
+                placeholder="Ingrese su precio por viaje" [(ngModel)]="precioVehiculo">
+            </ion-input>
+              <ion-item>
+                <ion-label>Capacidad</ion-label>
+                <ion-select placeholder="Seleccione: " [(ngModel)]="capacidadVehiculo">
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                  <ion-select-option value="3">3</ion-select-option>
+                </ion-select>
+              </ion-item>
+            <ion-input class="campo" type="text" fill="outline" label="Imagen" labelPlacement="floating" [clearInput]="true"
+              placeholder="Link de Imagen" [(ngModel)]="imagenVehiculo">
+            </ion-input>
+
+          </div>
+        </ion-item>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
