@@ -1,0 +1,48 @@
+<div class="ion-page padding" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Mapa</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+
+    <!-- Contenedor para el mapa -->
+    <div #map id="map" style="height: 90%; width: 100%;"></div>
+
+
+    <!-- Campo de entrada para la dirección -->
+    <ion-item>
+      <ion-label position="floating">Destino</ion-label>
+      <ion-input [(ngModel)]="end" (ionInput)="updateSearchResults()"></ion-input>
+    </ion-item>
+
+    <!-- Lista de resultados de autocompletado -->
+    <ion-list *ngIf="autocompleteItems.length > 0">
+      <ion-item *ngFor="let item of autocompleteItems" (click)="selectSearchResult(item)">
+        <ion-label>{{ item.description }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Mostrar la distancia -->
+    <ion-item *ngIf="distancia">
+      <ion-label>Distancia</ion-label>
+      <ion-text>{{ distancia }}</ion-text>
+    </ion-item>
+
+    <!-- Mostrar la duración -->
+    <ion-item *ngIf="duracion">
+      <ion-label>Duración</ion-label>
+      <ion-text>{{ duracion }}</ion-text>
+    </ion-item>
+
+  </ion-content>
+</div>
+
+<!-- Cargar el script de Google Maps -->
+<script 
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAzk949d0XkOUKLid2THsCUrFbwGyOdry0">
+</script>

@@ -1,0 +1,84 @@
+/* General */
+ion-content {
+    --background: var(--fondo-content);
+    padding: 16px;
+  }
+  
+  /* Mapa */
+  #map {
+    width: 100%;
+    height: 60vh;
+    border-radius: 8px;
+  }
+  
+  /* Input */
+  ion-item {
+    margin-bottom: 16px;
+  }
+  
+  ion-label {
+    color: var(--texto-inputT);
+  }
+  
+  ion-input {
+    --background: var(--fondo-input);
+    --color: var(--texto-input);
+    --border-color: var(--border);
+  }
+  
+  ion-list {
+    margin-top: 16px;
+  }
+  
+  /* Botón */
+  ion-button {
+    background-color: var(--boton);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    margin-top: 16px;
+    width: 100%;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    ion-content {
+      padding: 8px;
+    }
+  
+    #map {
+      height: 50vh;
+    }
+  
+    ion-button {
+      font-size: 14px;
+    }
+  
+    ion-item {
+      font-size: 14px;
+    }
+  
+    ion-label {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #map {
+      height: 40vh;
+    }
+  
+    ion-button {
+      font-size: 12px;
+    }
+  
+    ion-item {
+      font-size: 12px;
+    }
+  
+    ion-label {
+      font-size: 12px;
+    }
+  }
+  
